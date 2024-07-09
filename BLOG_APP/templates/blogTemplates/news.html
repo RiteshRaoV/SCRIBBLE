@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home Page
+{% endblock title %}
+{% block nav-bar %}
+<ul class="navigation">
+    <li><a href="{% url 'home' %}">HOME</a></li>
+    <li><a href="{% url 'news' %}">NEWS FEEDS</a></li>
+    <li><a href="#events">UPCOMING EVENTS</a></li>
+    <li><a href="#jobs">JOBS</a></li>
+    <li><a href="#register">REGISTER</a></li>
+</ul>
+{% endblock nav-bar %}
+{% block content %}
+
+<!--NEWS SECTION-->
+<section class="news" id="news">
+    <div class="titletext">
+        <h1>Here's your News <span>Feed</span> {{username}}</h1>
+    </div>
+    <div class="container">
+        {% for article in articles %}
+        <div class="card">
+            <div class="card__header">
+                <img src="{% if article.urlToImage %}{{ article.urlToImage }}{% else %}https://th.bing.com/th/id/OIP.7hIBET-9zWe1o1gHdZK6FgHaD_?w=1007&h=542&rs=1&pid=ImgDetMain{% endif %}" alt="img" class="card__image" width="600">
+            </div>
+            <div class="card__body">
+                <span class="tag">{{ article.source.name }}</span>
+                <h4>{{ article.title }}</h4>
+                <p>{{ article.description|default:"No description available." }}</p>
+            </div>
+            <div class="card__footer">
+                <div class="user">
+                    <img src="https://i.pravatar.cc/40" alt="user__image" class="user__image">
+                    <div class="user__info">
+                        <h5>{{ article.author|default:"Unknown Author" }}</h5>
+                        <small>{{ article.publishedAt|date:"Y-m-d H:i:s" }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
+

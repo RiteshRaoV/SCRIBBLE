@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}
+    Events Page
+{% endblock title %}
+{% block nav-bar %}
+<ul class="navigation">
+    <li><a href="#banner">HOME</a></li>
+    <li><a href="#events">UPCOMING EVENTS</a></li>
+</ul>
+{% endblock nav-bar %} 
+{% block content %}
+ <!--EVENTS SECTION-->
+ <section class="events" id="events">
+    <div class="titletext">
+        <h1>Upcoming <span>Events</span></h1>
+    </div>
+    <div class="container">
+        <div class="card">
+          <div class="card__header">
+            <img src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=600" alt="card__image" class="card__image" width="600">
+          </div>
+          <div class="card__body">
+            <span class="tag">Events</span>
+            <h4>Conference Meeting</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+          </div>
+          <div class="card__footer">
+            <div class="user">
+              <img src="https://i.pravatar.cc/40?img=32" alt="user__image" class="user__image">
+              <div class="user__info">
+                <h5>User 1</h5>
+                <small>2h ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header">
+            <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="card__image" class="card__image" width="600">
+          </div>
+          <div class="card__body">
+            <span class="tag">Events</span>
+            <h4>Talk Show Shoot</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+          </div>
+          <div class="card__footer">
+            <div class="user">
+              <img src="https://i.pravatar.cc/40?img=31" alt="user__image" class="user__image">
+              <div class="user__info">
+                <h5>User 2</h5>
+                <small>Yesterday</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header">
+            <img src="https://images.pexels.com/photos/301987/pexels-photo-301987.jpeg?auto=compress&cs=tinysrgb&w=600" alt="card__image" class="card__image" width="600">
+          </div>
+          <div class="card__body">
+            <span class="tag">Events</span>
+            <h4>Farewell Function</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+          </div>
+          <div class="card__footer">
+            <div class="user">
+              <img src="https://i.pravatar.cc/40?img=30" alt="user__image" class="user__image">
+              <div class="user__info">
+                <h5>User 3</h5>
+                <small>2d ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock content %}
