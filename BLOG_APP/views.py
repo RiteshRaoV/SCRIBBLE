@@ -13,7 +13,7 @@ def events_page(request):
     return render(request,"blogTemplates/events.html")
 
 @login_required
-def news_page(request, category=None):
+def news_page(request, category="general"):
     if category:
         top_headlines = newsapi.get_top_headlines(category=category, language='en', country='in')
     else:

@@ -40,7 +40,7 @@
             <li class="{% if request.path == '/news/' %}active{% endif %}"><a href="{% url 'news' %}">All</a></li>
             <li class="{% if request.path == '/news/business/' %}active{% endif %}"><a href="{% url 'news_category' 'business' %}">Business</a></li>
             <li class="{% if request.path == '/news/sports/' %}active{% endif %}"><a href="{% url 'news_category' 'sports' %}">Sports</a></li>
-            <li class="{% if request.path == '/news/politics/' %}active{% endif %}"><a href="{% url 'news_category' 'politics' %}">Politics</a></li>
+            <li class="{% if request.path == '/news/science/' %}active{% endif %}"><a href="{% url 'news_category' 'science' %}">Science</a></li>
             <li class="{% if request.path == '/news/entertainment/' %}active{% endif %}"><a href="{% url 'news_category' 'entertainment' %}">Entertainment</a></li>
             <li class="{% if request.path == '/news/technology/' %}active{% endif %}"><a href="{% url 'news_category' 'technology' %}">Tech</a></li>
         </ul>
