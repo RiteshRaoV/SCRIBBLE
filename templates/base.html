@@ -33,8 +33,64 @@
         {% block nav-bar %}
         
         {% endblock nav-bar %}
+
+    </div>
+    <div class="categories">
+        <ul class="cat-links">
+            <li class="{% if request.path == '/news/' %}active{% endif %}"><a href="{% url 'news' %}">All</a></li>
+            <li class="{% if request.path == '/news/business/' %}active{% endif %}"><a href="{% url 'news_category' 'business' %}">Business</a></li>
+            <li class="{% if request.path == '/news/sports/' %}active{% endif %}"><a href="{% url 'news_category' 'sports' %}">Sports</a></li>
+            <li class="{% if request.path == '/news/politics/' %}active{% endif %}"><a href="{% url 'news_category' 'politics' %}">Politics</a></li>
+            <li class="{% if request.path == '/news/entertainment/' %}active{% endif %}"><a href="{% url 'news_category' 'entertainment' %}">Entertainment</a></li>
+            <li class="{% if request.path == '/news/technology/' %}active{% endif %}"><a href="{% url 'news_category' 'technology' %}">Tech</a></li>
+        </ul>
+        
     </div>
     {% block content %}
     {% endblock content %}
 </body>
 </html>
+<style>
+    .categories{
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+    }
+    .cat-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        position: relative;
+    }
+    .cat-links li a{
+        text-decoration: none;
+        color: var(--primary);
+        padding: 5px 40px;
+        transition: .3s ease-in-out;
+        border-bottom: 2px solid #fff;
+        left: 0;
+        color: var(--primary);
+        padding: 8px 16px; /* Padding inside each link */
+        border-radius: 15px; /* Rounded corners for each link */
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; 
+    }
+    .cat-links li a:hover {
+        background-color: var(--secondary); /* Background color on hover */
+        color: white; 
+    }
+    .cat-links li.active a {
+        background-color: var(--secondary); /* Background color on hover */
+        color: white; 
+    }
+</style>
+<script>
+    
+</script>

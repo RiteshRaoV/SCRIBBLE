@@ -13,17 +13,16 @@ def events_page(request):
     return render(request,"blogTemplates/events.html")
 
 @login_required
-def news_page(request):
-    # response = requests.get(url,params={
-    #     "country":"in",
-    #     "category":"business",
-    #     "apiKey":apiKey
-    # })
-    top_headlines = newsapi.get_top_headlines(category='business',language='en',country='in')
+def news_page(request, category=None):
+    if category:
+        top_headlines = newsapi.get_top_headlines(category=category, language='en', country='in')
+    else:
+        top_headlines = newsapi.get_top_headlines(language='en', country='in')
+
     articles = top_headlines.get("articles")
     return render(request, "blogTemplates/news.html", {
-        "username":request.user.username,
-        "articles":articles
+        "username": request.user.username,
+        "articles": articles
     })
 
 @login_required
