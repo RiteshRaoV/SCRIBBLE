@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/allBlogs.css' %}">
+{% endblock css_files %}
+{% block title %}   
+    All-Blogs
+{% endblock title %}    
+{% block content %}
+<h1>All Users and Blogs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Blogs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td colspan="5">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Blog ID</th>
+                                <th>Blog Title</th>
+                                <th>Blog Content</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for blog in user.blogs.all %}
+                            <tr>
+                                <td>{{ blog.id }}</td>
+                                <td>{{ blog.blog_title }}</td>
+                                <td>{{ blog.blog_content | safe }}</td>
+                                <td>{{ blog.status }}</td>
+                                <td>
+                                    <form action="{% url 'change_blog_status' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                                        <input type="hidden" name="status" value="Approved" />
+                                        <button type="submit">Approve</button>
+                                    </form>
+                                    <form action="{% url 'change_blog_status' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                                        <input type="hidden" name="status" value="Rejected" />
+                                        <button type="submit">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

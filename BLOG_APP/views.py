@@ -1,19 +1,22 @@
-from django.http import JsonResponse
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from newsapi import NewsApiClient
 from .models import Blog
 from django.core import serializers
-
+from django.contrib.auth import get_user_model
 # Create your views here.
 url = "https://newsapi.org/v2/top-headlines"
 newsapi = NewsApiClient(api_key="b1e128f1633c4c27bbb274fe7b73cec3")
 
+User = get_user_model()
+def is_superuser(user):
+    return user.is_authenticated and user.is_superuser
 
 @login_required
 def add_blogs_page(request):
     if request.method == "POST":
-        blog_type = request.POST.get("castegory")
+        blog_type = request.POST.get("category")
         blog_title = request.POST.get("title")
         blog_content = request.POST.get("content")
         if not blog_type or not blog_title or not blog_content:
@@ -26,23 +29,43 @@ def add_blogs_page(request):
             blog_type=blog_type,
             blog_title=blog_title,
             blog_content=blog_content,
-            status="pending",
+            status="Pending",
         )
         blog.save()
 
-        return redirect("events") 
+        return render(request, "blogTemplates/add_blog.html",{
+                "message":"Blog Submitted!!"
+            }) 
 
     return render(request, "blogTemplates/add_blog.html")
 
+@login_required
+@user_passes_test(is_superuser)
+def all_blogs(request):
+    users = User.objects.filter(blogs= not None).distinct()
+    return render(request,"blogTemplates/allBlogs.html",{
+        "users":users
+    })
+
+@login_required
+@user_passes_test(is_superuser)
+def change_blog_status(request):
+    if request.method=="POST":
+        blog_id = request.POST.get("blog_id")
+        blog_status = request.POST.get("status")
+        
+        blog = Blog.objects.get(pk=blog_id)
+        blog.status = blog_status
+        blog.save()
+        
+        return redirect("all_blogs")
 
 def get_user_blogs(request):
     user = request.user
     user_blogs = user.blogs.all()
-    data = serializers.serialize('json', user_blogs)  
     return render(request,"blogTemplates/user_blogs.html",{
         "blogs":user_blogs
     })
-    return JsonResponse({'blogs': data}, safe=False)
 
 
 @login_required

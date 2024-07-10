@@ -8,6 +8,7 @@ urlpatterns = [
     path('news/', views.news_page, name='news'),
     path('news/<str:category>/', views.news_page, name='news_category'),
     path('home/',views.home_page,name='home'),
-    path('user-blogs/',views.get_user_blogs,name='user_blogs')
+    path('all-blogs/',views.all_blogs,name='all_blogs'),
+    path('update-blog-status/',views.change_blog_status,name='change_blog_status')
 
 ]
