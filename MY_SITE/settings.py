@@ -85,9 +85,9 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-# ALLOWED_HOSTS=['*']
-SESSION_COOKIE_AGE = 5 * 60
-
+ALLOWED_HOSTS=['172.18.4.233']
+SESSION_EXPIRE_SECONDS = 1800
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'            
 EMAIL_PORT = 587                           

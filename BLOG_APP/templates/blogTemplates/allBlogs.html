@@ -46,13 +46,16 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="blog_id" value="{{ blog.id }}" />
                                         <input type="hidden" name="status" value="Approved" />
+                                        {% if blog.status == 'Rejected' or blog.status == 'Pending' %}
                                         <button type="submit">Approve</button>
-                                    </form>
+                                        {% endif %}                                                                        </form>
                                     <form action="{% url 'change_blog_status' %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="blog_id" value="{{ blog.id }}" />
                                         <input type="hidden" name="status" value="Rejected" />
+                                        {% if blog.status == 'Pending' or blog.status == 'Approved' %}
                                         <button type="submit">Reject</button>
+                                        {% endif %}
                                     </form>
                                 </td>
                             </tr>

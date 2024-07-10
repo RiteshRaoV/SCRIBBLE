@@ -42,7 +42,7 @@ def add_blogs_page(request):
 @login_required
 @user_passes_test(is_superuser)
 def all_blogs(request):
-    users = User.objects.filter(blogs= not None).distinct()
+    users = User.objects.filter(blogs__isnull=False).distinct()
     return render(request,"blogTemplates/allBlogs.html",{
         "users":users
     })
