@@ -85,7 +85,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-ALLOWED_HOSTS=['172.18.4.233']
+ALLOWED_HOSTS=['172.18.4.233','localhost']
 SESSION_EXPIRE_SECONDS = 1800
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
