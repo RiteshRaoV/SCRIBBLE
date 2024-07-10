@@ -37,7 +37,7 @@ News Page
                     <img src="https://i.pravatar.cc/40" alt="user__image" class="user__image">
                     <div class="user__info">
                         <h5>{{ article.author|default:"Unknown Author" }}</h5>
-                        <small>{{ article.publishedAt|date:"Y-m-d H:i:s" }}</small>
+                        <small>{{ article.publishedAt|slice:":10" }}</small>
                     </div>
                 </div>
             </div>

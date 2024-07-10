@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
             toolbar: [
                 [{ 'header': [1, 2, false] }],
                 ['bold', 'italic', 'underline'],
-                ['image', 'code-block'],
+                ['image', 'link'],
                 [{ 'list': 'ordered'}, { 'list': 'bullet' }]
             ]
-        }
+        }  
     });
 
     var form = document.getElementById('blog-form');

@@ -41,7 +41,9 @@
             {% else %}
             <li><a href="{% url 'events' %}">BLOGS</a></li>
             {% endif %}
-            <li><a href="#jobs">JOBS</a></li>
+            {% if request.user.is_superuser %}
+            <li><a href="/admin">ADMIN</a></li>
+            {% endif %}
             <li><a href="{% url 'logout' %}">LOGOUT</a></li>
         </ul>
     </div>
