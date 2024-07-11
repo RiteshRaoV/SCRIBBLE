@@ -36,8 +36,14 @@ def add_blogs_page(request):
         return render(request, "blogTemplates/add_blog.html",{
                 "message":"Blog Submitted!!"
             }) 
+    return render(request,"blogTemplates/add_blog.html")
 
-    return render(request, "blogTemplates/add_blog.html")
+@login_required
+def blog_display(request):
+    blogs = Blog.objects.all()
+    return render(request, "blogTemplates/blogView.html",{
+        "blogs":blogs
+    })
 
 @login_required
 @user_passes_test(is_superuser)

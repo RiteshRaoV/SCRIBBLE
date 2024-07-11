@@ -1,0 +1,356 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container for note cards */
+  .notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Individual note card */
+  .note-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .note-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Note card header */
+  .card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Note card body */
+  .card-body {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  /* Note card footer */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Button styles */
+  .open-modal-btn {
+    background-color: #a6d1e6; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .open-modal-btn:hover {
+    background-color: #a6d1e6;
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* Modal styles */
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .close-icon {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-icon:hover {
+    color: black;
+  }
+  
+  .modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .modal-description {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .modal-date {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  .modal-buttons {
+    text-align: center;
+  }
+  
+  .edit-button,
+  .delete-button {
+    background-color: #a6d1e6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    background-color: #a6d1e6;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  .create-note-container {
+    margin-top: 2%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .note-link {
+    text-decoration: none;
+  }
+  .create-note-btn {
+    background-color: #a6d1e6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .create-note-btn:hover {
+    background-color: #a6d1e6;
+    text-decoration: none;
+    color: white;
+  }
+  .delete-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  /* CSS for the delete note modal */
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+  }
+  
+  .close-icon {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-icon:hover,
+  .close-icon:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-buttons {
+    text-align: right;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .delete-button:hover,
+  .cancel-button:hover {
+    opacity: 0.8;
+  }
+  
+  .delete-button-open:hover {
+    transform: scale(1.5);
+    transition: ease-in-out;
+  
+    background-color: rgba(0, 0, 0, 0.0001);
+  }
+  .delete-button-open {
+    /* transform: scale(1.5); */
+    background-color: rgba(0, 0, 0, 0.0001);
+    border: none;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* CSS for modal content */
+  .modal-content {
+    max-height: 400px; /* Set a maximum height for the modal content */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+  
+  .empty-notes-message {
+    text-align: center;
+    margin-top: 200px;
+  }
+  
+  .empty-notes-message p {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: grey;
+  }
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    position: relative;
+  }
+  
+  .close-icon,
+  .fullscreen-icon {
+    position: absolute;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-icon {
+    right: 40px;
+  }
+  
+  .fullscreen-icon {
+    right: 10px;
+  }
+  
+  .modal-title {
+    margin-top: 0;
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+  }
+  
