@@ -31,6 +31,9 @@ function deleteNote(button) {
 function openDeleteModal() {
   document.getElementById("deleteNoteModal").style.display = "block";
 }
+function closeDeleteModal() {
+  document.getElementById("deleteNoteModal").style.display = "none";
+}
 
 function closeModal() {
   const modal = document.getElementById('noteModal');

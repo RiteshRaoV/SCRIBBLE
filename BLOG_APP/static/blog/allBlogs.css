@@ -2,7 +2,7 @@
 table {
   width: 90%;
   border-collapse: collapse;
-  margin-bottom: 30px;
+  margin: 60px;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -42,3 +42,7 @@ td button:hover {
 form {
   display: inline-block;
 }
+tbody{
+  height: 60px;
+}
+

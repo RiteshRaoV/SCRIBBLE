@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from newsapi import NewsApiClient
+
+from MY_SITE import settings
 from .models import Blog
 from django.core import serializers
 from django.contrib.auth import get_user_model
@@ -19,6 +21,8 @@ def add_blogs_page(request):
         blog_type = request.POST.get("category")
         blog_title = request.POST.get("title")
         blog_content = request.POST.get("content")
+        blog_description = request.POST.get("Description")
+        blog_thumbnail=request.FILES.get("Thumbnail")
         if not blog_type or not blog_title or not blog_content:
             return render(request, "blogTemplates/add_blog.html",{
                 "message":"Something Went wrong!!"
@@ -29,6 +33,8 @@ def add_blogs_page(request):
             blog_type=blog_type,
             blog_title=blog_title,
             blog_content=blog_content,
+            blog_description=blog_description,
+            blog_thumbnail=blog_thumbnail,
             status="Pending",
         )
         blog.save()
@@ -40,9 +46,9 @@ def add_blogs_page(request):
 
 @login_required
 def blog_display(request):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.filter(status='approved')
     return render(request, "blogTemplates/blogView.html",{
-        "blogs":blogs
+        "blogs":blogs,
     })
 
 @login_required
@@ -65,12 +71,12 @@ def change_blog_status(request):
         blog.save()
         
         return redirect("all_blogs")
-
-def get_user_blogs(request):
-    user = request.user
-    user_blogs = user.blogs.all()
-    return render(request,"blogTemplates/user_blogs.html",{
-        "blogs":user_blogs
+    
+@login_required
+def user_blogs(request):
+    blogs  = Blog.objects.filter(user=request.user)
+    return render(request,"blogTemplates/userBlogView.html",{
+        "blogs":blogs
     })
 
 
@@ -87,7 +93,7 @@ def news_page(request, category="general"):
     return render(
         request,
         "blogTemplates/news.html",
-        {"username": request.user.username, "articles": articles},
+        {"username": request.user.username, "articles": articles,"email":request.user.email},
     )
 
 
@@ -107,3 +113,4 @@ def home_page(request):
         "blogTemplates/news.html",
         {"username": request.user.username, "articles": articles},
     )
+

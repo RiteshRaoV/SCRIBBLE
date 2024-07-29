@@ -2,69 +2,109 @@
 {% load static %}
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/allBlogs.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/blogView.css' %}">
 {% endblock css_files %}
-{% block title %}   
+{% block title %}
     All-Blogs
-{% endblock title %}    
+{% endblock title %}
 {% block content %}
-<h1>All Users and Blogs</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Blogs</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td colspan="5">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Blog ID</th>
-                                <th>Blog Title</th>
-                                <th>Blog Content</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for blog in user.blogs.all %}
-                            <tr>
-                                <td>{{ blog.id }}</td>
-                                <td>{{ blog.blog_title }}</td>
-                                <td>{{ blog.blog_content | safe }}</td>
-                                <td>{{ blog.status }}</td>
-                                <td>
-                                    <form action="{% url 'change_blog_status' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="blog_id" value="{{ blog.id }}" />
-                                        <input type="hidden" name="status" value="Approved" />
-                                        {% if blog.status == 'Rejected' or blog.status == 'Pending' %}
-                                        <button type="submit">Approve</button>
-                                        {% endif %}                                                                        </form>
-                                    <form action="{% url 'change_blog_status' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="blog_id" value="{{ blog.id }}" />
-                                        <input type="hidden" name="status" value="Rejected" />
-                                        {% if blog.status == 'Pending' or blog.status == 'Approved' %}
-                                        <button type="submit">Reject</button>
-                                        {% endif %}
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<table>
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Blogs</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td colspan="5">
+                <table class="inner-table">
+                    <thead>
+                        <tr>
+                            <th>Blog ID</th>
+                            <th>Blog Title</th>
+                            <th>Blog Content</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for blog in user.blogs.all %}
+                        <tr class="blog-row" 
+                            data-id="{{ blog.id }}"
+                            data-title="{{ blog.blog_title }}" 
+                            data-description="{{ blog.blog_content }}" 
+                            data-date="{{ blog.publish_date }}">
+                            <td>{{ blog.id }}</td>
+                            <td>{{ blog.blog_title }}</td>
+                            <td>{{ blog.blog_description|safe }}</td>
+                            <td>{{ blog.status }}</td>
+                            <td>
+                                <form action="{% url 'change_blog_status' %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                                    <input type="hidden" name="status" value="Approved" />
+                                    {% if blog.status == 'Rejected' or blog.status == 'Pending' %}
+                                    <button type="submit">Approve</button>
+                                    {% endif %}
+                                </form>
+                                <form action="{% url 'change_blog_status' %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                                    <input type="hidden" name="status" value="Rejected" />
+                                    {% if blog.status == 'Pending' or blog.status == 'Approved' %}
+                                    <button type="submit">Reject</button>
+                                    {% endif %}
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Modal for displaying full note details -->
+<div id="noteModal" class="custom-modal">
+    <div class="modal-content">
+        <span class="close-icon" onclick="closeModal()">&times;</span>
+        <span class="fullscreen-icon" onclick="toggleFullScreen(this)" style="cursor: pointer;">&#x26F6;</span>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-description" id="modal-description"></div>
+        <p class="modal-date" id="modal-date"></p>
+        <div class="modal-buttons">
+            <!-- Buttons or actions for the modal -->
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
+{% block js_files %}
+<script src="{% static 'blog/blogView.js' %}"></script>
+<script>
+    function openModal(row) {
+        document.getElementById('modal-title').textContent = row.getAttribute('data-title');
+        document.getElementById('modal-description').innerHTML = row.getAttribute('data-description'); 
+        document.getElementById('modal-date').textContent = row.getAttribute('data-date');
+        document.getElementById('noteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('noteModal').style.display = 'none';
+    }
+
+    // Add click event listener to each row
+    document.querySelectorAll('.blog-row').forEach(row => {
+        row.addEventListener('click', () => openModal(row));
+    });
+</script>
+{% endblock js_files %}

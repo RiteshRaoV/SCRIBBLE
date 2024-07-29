@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import include, path
+from django.conf.urls.static import static
 
 from AUTH import views
+from MY_SITE import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls,name="admin_page"),
     path('blog/',include('BLOG_APP.urls')),
     path('auth/',include('AUTH.urls')),
     path('',views.root_url)
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

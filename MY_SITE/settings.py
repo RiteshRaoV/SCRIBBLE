@@ -85,7 +85,12 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-ALLOWED_HOSTS=['172.18.4.233','localhost']
+
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+ALLOWED_HOSTS=['172.18.4.233','localhost','127.0.0.1']
 SESSION_EXPIRE_SECONDS = 1800
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

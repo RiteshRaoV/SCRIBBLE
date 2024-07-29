@@ -52,21 +52,21 @@
     <!--NAVBAR-->
     <div class="header">
         <ul class="navigation">
-            <li><a href="{% url 'home' %}">HOME</a></li>
+            <li class="{% if request.path == '/blog/news/' %}active{% endif %}"><a href="{% url 'home' %}">HOME</a></li>
             <li><a href="{% url 'news' %}">TOP FEEDS</a></li>
             {% if request.user.is_superuser %}
             <li><a href="{% url 'all_blogs' %}">BLOGS</a></li>
             {% else %}
             <li><a href="{% url 'approved_blogs' %}">BLOGS</a></li>
             {% endif %}
-            <li><a href="{% url 'approved_blogs' %}">MY BLOGS</a></li>
+            <li><a href="{% url 'user_blogs' %}">MY BLOGS</a></li>
             {% if request.user.is_superuser %}
             <li><a href="/admin">ADMIN</a></li>
             {% endif %}
             <li><a href="{% url 'logout' %}">LOGOUT</a></li>
         </ul>
     </div>
-
+ 
     {% block content %}
     {% endblock content %}
     <script>

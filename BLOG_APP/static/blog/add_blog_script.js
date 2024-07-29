@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
             toolbar: [
                 [{ 'header': [1, 2, false] }],
                 ['bold', 'italic', 'underline'],
-                ['image', 'link'],
+                ['image','code', 'link'],
                 [{ 'list': 'ordered'}, { 'list': 'bullet' }]
             ]
         }  

@@ -10,6 +10,6 @@ urlpatterns = [
     path('home/',views.home_page,name='home'),
     path('all-blogs/',views.all_blogs,name='all_blogs'),
     path('update-blog-status/',views.change_blog_status,name='change_blog_status'),
-    path('blogs/',views.blog_display,name='approved_blogs')
-
+    path('blogs/',views.blog_display,name='approved_blogs'),
+    path('my-blogs/',views.user_blogs,name="user_blogs")
 ]

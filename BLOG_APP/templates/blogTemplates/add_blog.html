@@ -21,8 +21,12 @@ News Page
     <h2>Create a New Blog Post</h2>
     <h2>{{message}}</h2>
 
-    <form id="blog-form" method="post">
+    <form id="blog-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="form-group">
+            <label for="Thumbnail">Thumbnail</label>
+            <input type="file" name="Thumbnail" id="Thumbnail">
+        </div>
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required>
@@ -37,6 +41,10 @@ News Page
                 <option value="entertainment">Entertainment</option>
                 <option value="business">Business</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" name="Description" id="Description">
         </div>
         <div class="form-group">
             <label for="content">Content</label>

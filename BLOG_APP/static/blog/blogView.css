@@ -5,25 +5,7 @@ body {
     padding: 0;
   }
   
-  /* Container for note cards */
-  .notes-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
-    padding: 20px;
-  }
-  
-  /* Individual note card */
-  .note-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-  }
-  
-  .note-card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+
   
   /* Note card header */
   .card-header {
@@ -44,26 +26,7 @@ body {
     justify-content: space-between;
     align-items: center;
   }
-  
-  /* Button styles */
-  .open-modal-btn {
-    background-color: #a6d1e6; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .open-modal-btn:hover {
-    background-color: #a6d1e6;
-  }
-  
+
   /* Modal styles */
   .modal {
     display: none;
@@ -152,35 +115,7 @@ body {
   .modal-buttons {
     text-align: center;
   }
-  
-  .edit-button,
-  .delete-button {
-    background-color: #a6d1e6;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .edit-button:hover,
-  .delete-button:hover {
-    background-color: #a6d1e6;
-  }
-  
-  .delete-button {
-    background-color: #f44336;
-  }
-  
-  .delete-button:hover {
-    background-color: #d32f2f;
-  }
+
   .create-note-container {
     margin-top: 2%;
     text-align: center;
@@ -208,14 +143,6 @@ body {
     text-decoration: none;
     color: white;
   }
-  .delete-button {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
   /* CSS for the delete note modal */
   .custom-modal {
     display: none;
@@ -353,4 +280,57 @@ body {
   .modal-buttons {
     margin-top: 20px;
   }
-  
+  /* Container for cards */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Card styling */
+.card {
+  position: relative;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card actions positioning */
+.card__actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+/* Edit and delete icon styling */
+.edit-icon, .delete-icon {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  cursor: pointer;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-icon:hover, .delete-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Adjusting card content to avoid overlap with icons */
+.card__content {
+  display: block;
+  position: relative;
+}
+
+/* Font Awesome for icons (ensure you have Font Awesome included) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
