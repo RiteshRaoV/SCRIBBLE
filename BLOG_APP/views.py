@@ -54,10 +54,12 @@ def blog_display(request):
 @login_required
 @user_passes_test(is_superuser)
 def all_blogs(request):
-    users = User.objects.filter(blogs__isnull=False).distinct()
+    blogs = Blog.objects.all()
     return render(request,"blogTemplates/allBlogs.html",{
-        "users":users
+        "blogs":blogs
     })
+    
+
 
 @login_required
 @user_passes_test(is_superuser)

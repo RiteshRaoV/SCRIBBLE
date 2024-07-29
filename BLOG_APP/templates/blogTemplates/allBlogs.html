@@ -2,109 +2,93 @@
 {% load static %}
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/allBlogs.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/blogView.css' %}">
 {% endblock css_files %}
 {% block title %}
-    All-Blogs
+Blogs
 {% endblock title %}
 {% block content %}
-<table>
-    <thead>
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Blogs</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td colspan="5">
-                <table class="inner-table">
-                    <thead>
-                        <tr>
-                            <th>Blog ID</th>
-                            <th>Blog Title</th>
-                            <th>Blog Content</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for blog in user.blogs.all %}
-                        <tr class="blog-row" 
-                            data-id="{{ blog.id }}"
-                            data-title="{{ blog.blog_title }}" 
-                            data-description="{{ blog.blog_content }}" 
-                            data-date="{{ blog.publish_date }}">
-                            <td>{{ blog.id }}</td>
-                            <td>{{ blog.blog_title }}</td>
-                            <td>{{ blog.blog_description|safe }}</td>
-                            <td>{{ blog.status }}</td>
-                            <td>
-                                <form action="{% url 'change_blog_status' %}" method="post" style="display:inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="blog_id" value="{{ blog.id }}" />
-                                    <input type="hidden" name="status" value="Approved" />
-                                    {% if blog.status == 'Rejected' or blog.status == 'Pending' %}
-                                    <button type="submit">Approve</button>
-                                    {% endif %}
-                                </form>
-                                <form action="{% url 'change_blog_status' %}" method="post" style="display:inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="blog_id" value="{{ blog.id }}" />
-                                    <input type="hidden" name="status" value="Rejected" />
-                                    {% if blog.status == 'Pending' or blog.status == 'Approved' %}
-                                    <button type="submit">Reject</button>
-                                    {% endif %}
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="create-note-container">
+    <a href="{% url 'add_blogs' %}" class="create-note-btn">Create New Blog</a>
+    {% if blog.isempty %}
+    <div class="empty-notes-message">
+        <p>No notes found.</p>
+    </div>
+    {% endif %}
+</div>
+<div class="container">
+    {% for blog in blogs %}
+    <a data-id="{{ blog.id }}"
+    data-title="{{ blog.blog_title }}"
+    data-description="{{ blog.blog_content }}"
+    data-date="{{ blog.publish_date }}"
+    onclick="openModal(this)" class="card" style="text-decoration: none; color: inherit;">
+        <div class="card__header">
+            <img src="{% if blog.blog_thumbnail %}{{ blog.blog_thumbnail.url }}{% else %}https://th.bing.com/th/id/OIP.7hIBET-9zWe1o1gHdZK6FgHaD_?w=1007&h=542&rs=1&pid=ImgDetMain{% endif %}" alt="img" class="card__image" width="600">
+        </div>
+        <div class="card__body">
+            {% comment %} <span class="tag">{{ blog.source.name }}</span> {% endcomment %}
+            <h4>{{ blog.blog_title }}</h4>
+            <p>{{ blog.blog_description|default:"No description available." }}</p>
+        </div>
+        <div class="card__footer">
+            <div class="user">
+                <img src="{% if blog.user.profile.profile_pic %}{{ blog.user.profile.profile_pic.url }}{% else %}https://i.pravatar.cc/40{% endif %}" alt="user__image" class="user__image">
+                <div class="user__info">
+                    <h5>{{ blog.user.username|default:"Unknown Author" }}</h5>
+                    <small>{{ blog.status|slice:":10" }}</small>
+                </div>
+            </div>
+            <div class='blog-action'>
+            <form action="{% url 'change_blog_status' %}" method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                <input type="hidden" name="status" value="Approved" />
+                {% if blog.status == 'Rejected' or blog.status == 'Pending' %}
+                <button class="approve-reject-btn" type="submit">Approve</button>
+                {% endif %}
+            </form>
+            <form action="{% url 'change_blog_status' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                <input type="hidden" name="status" value="Rejected" />
+                {% if blog.status == 'Pending' or blog.status == 'Approved' %}
+                <button class="approve-reject-btn" type="submit">Reject</button>
+                {% endif %}
+            </form>
+        </div>
+        </div>
 
-<!-- Modal for displaying full note details -->
+    </a>
+    {% endfor %}
+</div>
+
+  <!-- Modal for displaying full note details -->
 <div id="noteModal" class="custom-modal">
     <div class="modal-content">
         <span class="close-icon" onclick="closeModal()">&times;</span>
         <span class="fullscreen-icon" onclick="toggleFullScreen(this)" style="cursor: pointer;">&#x26F6;</span>
         <h2 class="modal-title" id="modal-title"></h2>
-        <div class="modal-description" id="modal-description"></div>
+        <!-- Use th:utext to render HTML content -->
+        <p class="modal-description" id="modal-description">{{blog.blog_content}}</p>
         <p class="modal-date" id="modal-date"></p>
         <div class="modal-buttons">
             <!-- Buttons or actions for the modal -->
         </div>
     </div>
 </div>
-
+    <!-- Modal for confirming note deletion -->
+<div id="deleteNoteModal" class="custom-modal">
+    <div class="modal-content">
+        <span class="close-icon" onclick="closeDeleteModal()">&times;</span>
+        <h2>Delete Note</h2>
+        <p>Are you sure you want to delete this note?</p>
+        <div class="modal-buttons">
+            <button class="delete-button" onclick="confirmDelete()">Delete</button>
+            <button class="cancel-button" onclick="closeDeleteModal()">Cancel</button>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 {% block js_files %}
 <script src="{% static 'blog/blogView.js' %}"></script>
-<script>
-    function openModal(row) {
-        document.getElementById('modal-title').textContent = row.getAttribute('data-title');
-        document.getElementById('modal-description').innerHTML = row.getAttribute('data-description'); 
-        document.getElementById('modal-date').textContent = row.getAttribute('data-date');
-        document.getElementById('noteModal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('noteModal').style.display = 'none';
-    }
-
-    // Add click event listener to each row
-    document.querySelectorAll('.blog-row').forEach(row => {
-        row.addEventListener('click', () => openModal(row));
-    });
-</script>
 {% endblock js_files %}

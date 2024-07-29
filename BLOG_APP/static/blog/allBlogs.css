@@ -1,31 +1,353 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin: 60px;
-  background-color: #fff;
+/* Note card header */
+.card-header {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Note card body */
+.card-body {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* Note card footer */
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.blog-action {
+  display: flex;
+  gap: 20px;
+}
+
+
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Modal styles */
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close-icon {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  color: black;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-description {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.modal-date {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  text-align: center;
+}
+
+.create-note-container {
+  margin-top: 2%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.note-link {
+  text-decoration: none;
+}
+.create-note-btn {
+  background-color: #a6d1e6;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-note-btn:hover {
+  background-color: #a6d1e6;
+  text-decoration: none;
+  color: white;
+}
+/* CSS for the delete note modal */
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close-icon {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-icon:hover,
+.close-icon:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  text-align: right;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-button:hover,
+.cancel-button:hover {
+  opacity: 0.8;
+}
+
+.delete-button-open:hover {
+  transform: scale(1.5);
+  transition: ease-in-out;
+
+  background-color: rgba(0, 0, 0, 0.0001);
+}
+.delete-button-open {
+  /* transform: scale(1.5); */
+  background-color: rgba(0, 0, 0, 0.0001);
+  border: none;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+/* CSS for modal content */
+.modal-content {
+  max-height: 400px; /* Set a maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.empty-notes-message {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.empty-notes-message p {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: grey;
+}
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative;
+}
+
+.close-icon,
+.fullscreen-icon {
+  position: absolute;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-icon {
+  right: 40px;
+}
+
+.fullscreen-icon {
+  right: 10px;
+}
+
+.modal-title {
+  margin-top: 0;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+/* Container for cards */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Card styling */
+.card {
+  position: relative;
+  margin: 20px;
+  border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-th,
-td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
+/* Card actions positioning */
+.card__actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
 }
 
-th {
-  background-color: #333;
-  color: #fff;
+/* Edit and delete icon styling */
+.edit-icon,
+.delete-icon {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  cursor: pointer;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.edit-icon:hover,
+.delete-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.2);
 }
 
-td button {
+/* Adjusting card content to avoid overlap with icons */
+.card__content {
+  display: block;
+  position: relative;
+}
+
+/* Font Awesome for icons (ensure you have Font Awesome included) */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+.approve-reject-btn {
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
@@ -35,14 +357,6 @@ td button {
   transition: background-color 0.3s;
 }
 
-td button:hover {
+.approve-reject-btn:hover {
   background-color: #45a049;
 }
-
-form {
-  display: inline-block;
-}
-tbody{
-  height: 60px;
-}
-
