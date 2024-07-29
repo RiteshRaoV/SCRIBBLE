@@ -35,7 +35,7 @@ Blogs
                 <img src="{% if blog.user.profile.profile_pic %}{{ blog.user.profile.profile_pic.url }}{% else %}https://i.pravatar.cc/40{% endif %}" alt="user__image" class="user__image">
                 <div class="user__info">
                     <h5>{{ blog.user.username|default:"Unknown Author" }}</h5>
-                    <small>{{ blog.status|slice:":10" }}</small>
+                    <small>{{ blog.publish_date}}</small>
                 </div>
             </div>
         </div>

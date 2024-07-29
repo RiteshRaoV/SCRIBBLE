@@ -52,14 +52,14 @@
     <!--NAVBAR-->
     <div class="header">
         <ul class="navigation">
-            <li class="{% if request.path == '/blog/news/' %}active{% endif %}"><a href="{% url 'home' %}">HOME</a></li>
-            <li><a href="{% url 'news' %}">TOP FEEDS</a></li>
+            <li class="{% if request.path == '/blog/home/' %}active{% endif %}"><a href="{% url 'home' %}">HOME</a></li>
+            <li class="{% if request.path == '/blog/news/' %}active{% endif %}"><a href="{% url 'news' %}">TOP FEEDS</a></li>
             {% if request.user.is_superuser %}
-            <li><a href="{% url 'all_blogs' %}">BLOGS</a></li>
+            <li class="{% if request.path == '/blog/all-blogs/' %}active{% endif %}"><a href="{% url 'all_blogs' %}">BLOGS</a></li>
             {% else %}
-            <li><a href="{% url 'approved_blogs' %}">BLOGS</a></li>
+            <li class="{% if request.path == '/blog/blogs/' %}active{% endif %}"><a href="{% url 'approved_blogs' %}">BLOGS</a></li>
             {% endif %}
-            <li><a href="{% url 'user_blogs' %}">MY BLOGS</a></li>
+            <li class="{% if request.path == '/blog/my-blogs/' %}active{% endif %}"><a href="{% url 'user_blogs' %}">MY BLOGS</a></li>
             {% if request.user.is_superuser %}
             <li><a href="/admin">ADMIN</a></li>
             {% endif %}

@@ -104,6 +104,9 @@ html {
 .header .navigation li a:hover {
   border-bottom: 2px solid var(--secondary);
 }
+.header .navigation li.active a {
+  border-bottom: 2px solid var(--secondary);
+}
 .categories {
   height: 60px;
   width: 100%;

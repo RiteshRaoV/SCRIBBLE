@@ -21,9 +21,10 @@ Blogs
             <a href=# class="edit-icon" title="Edit Blog">
                 <i class="fa fa-edit"></i>
             </a>
-            <form action=# method="post" class="delete-form">
+            <form action={% url "delete_blog" %} method="post" class="delete-form">
                 {% csrf_token %}
                 <button type="submit" class="delete-icon" title="Delete Blog">
+                    <input type="hidden" name="blog_id" value='{{blog.id}}'>
                     <i class="fa fa-trash"></i>
                 </button>
             </form>

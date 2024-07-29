@@ -58,8 +58,15 @@ def all_blogs(request):
     return render(request,"blogTemplates/allBlogs.html",{
         "blogs":blogs
     })
-    
 
+@login_required
+def delete_blog(request):
+    if request.method=='POST':
+        blog_id = request.POST.get("blog_id")
+        blog = Blog.objects.get(user=request.user,pk=blog_id)
+        if blog:
+            blog.delete()
+            return redirect("user_blogs")
 
 @login_required
 @user_passes_test(is_superuser)
