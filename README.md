@@ -53,61 +53,77 @@
    ```bash
    git clone https://github.com/yourusername/scribble.git
    cd scribble
-Create a virtual environment and activate it:
 
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install the required dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Apply migrations:
+2. **Create and activate a virtual environment:**
 
-bash
-Copy code
-python manage.py migrate
-Create a superuser (for accessing the admin panel):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
 
-bash
-Copy code
-python manage.py createsuperuser
-Start the development server:
+3. **Install the required dependencies:**
 
-bash
-Copy code
-python manage.py runserver
-Visit http://127.0.0.1:8000/ in your browser.
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Docker Setup
-To run the project in Docker:
+4. **Apply migrations:**
 
-Build the Docker image:
+    ```bash
+    python manage.py migrate
+    ```
 
-bash
-Copy code
-docker-compose build
-Start the containers:
+5. **Create a superuser (for accessing the admin panel):**
 
-bash
-Copy code
-docker-compose up
-Access the application at http://localhost:8000/.
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-Usage
-Creating a Blog Post
-Navigate to the "Create New Blog" button on the homepage.
-Fill in the title and content of your blog.
-Save the blog post, and it will appear on the homepage.
-Viewing Blog Posts
-On the homepage, all blogs are listed.
-Click on any blog title to open its details in a modal.
-You can also edit or delete your own blogs.
-Folder Structure
-csharp
-Copy code
+6. **Start the development server:**
+
+    ```bash
+    python manage.py runserver
+    ```
+
+7. **Visit the application in your browser:**
+
+    [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+### Docker Setup
+
+1. **Build the Docker image:**
+
+    ```bash
+    docker-compose build
+    ```
+
+2. **Start the containers:**
+
+    ```bash
+    docker-compose up
+    ```
+
+3. **Access the application:**
+
+    [http://localhost:8000/](http://localhost:8000/)
+
+## Usage
+
+### Creating a Blog Post
+
+- Navigate to the "Create New Blog" button on the homepage.
+- Fill in the title and content of your blog.
+- Save the blog post, and it will appear on the homepage.
+
+### Viewing Blog Posts
+
+- On the homepage, all blogs are listed.
+- Click on any blog title to open its details in a modal.
+- You can also edit or delete your own blogs.
+
+## Folder Structure
+
 scribble/
 ├── scribble/
 │   ├── settings.py
@@ -129,20 +145,4 @@ scribble/
 │   └── admin.py
 ├── manage.py
 └── README.md
-API Endpoints
-GET /blogs/ - List all blogs
-POST /blogs/ - Create a new blog
-GET /blogs/<id>/ - Get details of a specific blog
-PUT /blogs/<id>/ - Update a specific blog
-DELETE /blogs/<id>/ - Delete a specific blog
-Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any changes or improvements.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-If you have any questions or feedback, feel free to reach out:
-
-Email: your.email@example.com
-GitHub: yourusername
