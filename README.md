@@ -79,6 +79,7 @@
 6. **Start the development server:**
 
     ```bash
+    add the api key in the BLOG_APP/views.py
     python manage.py runserver
     ```
 
