@@ -26,7 +26,7 @@ Blogs
             <img src="{% if blog.blog_thumbnail %}{{ blog.blog_thumbnail.url }}{% else %}https://th.bing.com/th/id/OIP.7hIBET-9zWe1o1gHdZK6FgHaD_?w=1007&h=542&rs=1&pid=ImgDetMain{% endif %}" alt="img" class="card__image" width="600">
         </div>
         <div class="card__body">
-            {% comment %} <span class="tag">{{ blog.source.name }}</span> {% endcomment %}
+            {% comment %} <span class="tag">{{ blog.blog_category }}</span> {% endcomment %}
             <h4>{{ blog.blog_title }}</h4>
             <p>{{ blog.blog_description|default:"No description available." }}</p>
         </div>

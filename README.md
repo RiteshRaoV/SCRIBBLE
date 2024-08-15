@@ -12,11 +12,7 @@
 - [Usage](#usage)
   - [Creating a Blog Post](#creating-a-blog-post)
   - [Viewing Blog Posts](#viewing-blog-posts)
-- [Folder Structure](#folder-structure)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+
 
 ## Project Overview
 
