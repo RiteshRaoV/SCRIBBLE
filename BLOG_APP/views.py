@@ -9,7 +9,7 @@ from django.core import serializers
 from django.contrib.auth import get_user_model
 # Create your views here.
 url = "https://newsapi.org/v2/top-headlines"
-newsapi = NewsApiClient(api_key="b1e128f1633c4c27bbb274fe7b73cec3")
+newsapi = NewsApiClient(api_key="")
 
 User = get_user_model()
 def is_superuser(user):
