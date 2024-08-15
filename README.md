@@ -122,27 +122,5 @@
 - Click on any blog title to open its details in a modal.
 - You can also edit or delete your own blogs.
 
-## Folder Structure
 
-scribble/
-├── scribble/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── blog/
-│   ├── migrations/
-│   ├── templates/
-│   │   └── blog/
-│   │       ├── blogView.html
-│   │       └── base.html
-│   ├── static/
-│   │   └── blog/
-│   │       ├── blogView.css
-│   │       └── blogView.js
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│   └── admin.py
-├── manage.py
-└── README.md
 
